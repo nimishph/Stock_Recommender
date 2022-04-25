@@ -1,6 +1,6 @@
 # **Artificial Intelligence Course Project [Apr-2022]**
 
-![IIITN Logo](.\logo.png)
+![IIITN Logo](logo.png)
 
 Institute Name: [Indian Institute of Information 
 Technology Nagpur](https://iiitn.ac.in)
