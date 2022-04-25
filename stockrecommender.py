@@ -32,21 +32,24 @@ def render():
     st.header("Investment Tenure*")
     PERIOD = st.radio("Select investment tenure (in years)*",
                       ("1-2", "3-6", "7-10"), index=0, on_change=None)
+    
+    sector_warning = False
     st.header("Preferred Sectors [Optional]")
     sectors = st.multiselect('Choose your Preferred Sectors (Atleast 4)', [
                              'Automobile', 'Banking', 'Chemical', 'Finance', 'IT', 'Metals', 'FMCG', 'Telecom', 'Pharma', 'Capital Goods', 'Textile', 'Power', 'Crude oil', 'Reality'])
     # st.write('You selected:', sectors)
-    if 1 <= len(sectors) < 4:
-        st.warning("Please choose atleast 4 sectors !!")
     st.header("Dividend Compulsory? (Y/N) [Optional]")
-    div = st.checkbox("Yes")
+    div = st.checkbox("Yes/No")
     clicked = st.button("Get Recommendations!")
     if clicked:
-        showRecommendations(RISK, PERIOD, sectors, div)
+        if 1 <= len(sectors) < 4:
+            st.warning("Please choose atleast 4 sectors !!")    
+        else:
+            showRecommendations(RISK, PERIOD, sectors, div)
 
-    for cap in st.session_state.suggestions:
-        f"""#### {cap}Cap Companies"""
-        st.table(st.session_state.suggestions[cap])
+            for cap in st.session_state.suggestions:
+                f"""#### {cap}Cap Companies"""
+                st.table(st.session_state.suggestions[cap])
 
 
 render()
